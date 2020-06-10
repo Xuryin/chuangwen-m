@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: f-web-puer-cockpit-chuangwen-m-prod
+  namespace: cockpit-mobile
+  labels:
+    web: f-web-puer-cockpit-chuangwen-m-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      web: f-web-puer-cockpit-chuangwen-m-prod
+  template:
+    metadata:
+      labels:
+        web: f-web-puer-cockpit-chuangwen-m-prod
+    spec:
+      containers:
+      - name: f-web-puer-cockpit-chuangwen-m-prod
+        image: harbor-puer.cspiretech.com/puer-zs-prod/web-puer-cockpit-chuangwen-m:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 7777
+        env:
+        - name: M_API_SITE
+          value: ""
+        - name: WEBAPI_AUTH_HOST
+          value: ""
+      imagePullSecrets:
+      - name: puer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: f-web-puer-cockpit-chuangwen-m-prod
+  namespace: cockpit-mobile
+  labels:
+    web: f-web-puer-cockpit-chuangwen-m-prod
+spec:
+  type: NodePort
+  ports:
+    - port: 7777
+      nodePort: 37001
+  selector:
+    web: f-web-puer-cockpit-chuangwen-m-prod
