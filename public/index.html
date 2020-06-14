@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0 maximum-scale=1.0, user-scalable=no,shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="wpk-bid" content="dta_1_296872243">
+  <meta content="telephone=no,email=no" name=format-detection>
+  <!-- 安卓平台 chrome -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="192x192" href="favicon.ico">
+
+  <!-- win8以上 平台 磁贴 -->
+  <meta name="msapplication-TileImage" content="favicon.ico">
+  <meta name="msapplication-TileColor" content="#0e90d2">
+
+  <!-- ios平台 safari -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" />
+  <link rel="apple-touch-icon-precomposed" href="favicon.ico">
+
+  <base href="./" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <title>CityBrain Design</title>
+  <script src="js/cockpit-jsf0-api.js"></script>
+  <% if (vendorsCssName) { %>
+  <link rel="stylesheet" href="<%= vendorsCssName%>" type="text/css">
+  <% } %>
+</head>
+
+<body>
+<div id='root'></div>
+<% if (vendorsJsName) { %>
+<script type="text/javascript" src="<%= vendorsJsName%>"></script>
+<% } %>
+</body>
+</html>
