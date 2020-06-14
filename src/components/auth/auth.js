@@ -13,13 +13,14 @@ class Authorized extends PureComponent {
   }
 
   componentDidMount() {
+    const COCKPIT_ID = "scwb-1252-m"
 
-    window.Cockpit && Cockpit.getToken("csdn-1202-pc", ({token}) => {
+    window.Cockpit && Cockpit.getToken(COCKPIT_ID, ({token}) => {
       // console.log(token)
       getAuth({
         token,
         // 驾驶舱编号
-        cockpitCode: 'csdn-1202-pc'
+        cockpitCode: COCKPIT_ID
       }).then((res) => {
         console.log(res)
         if(res && res.result) {

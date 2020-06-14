@@ -9,7 +9,7 @@ import {
 import Framework from './layouts/framework'
 import Auth from '@/components/auth/auth'
 
-import Hello from './pages/hello'
+import Index from './pages/index'
 
 
 
@@ -18,17 +18,17 @@ import './app.styl'
 export default class App extends Component {
   render() {
     return (
-      <Auth>
-        <Router>
-          <Framework>
-            <Switch>
-              <Route excat path={'/hello'} component={Hello} />
-              <Redirect exact from={'/'} to={'/hello'} />
-              <Route render={() => <div className="FBV FBAC FBJC" style={{fontSize: 100}}>404</div>} />
-            </Switch>
-          </Framework>
-        </Router>
-      </Auth>
+      // <Auth>
+      <Router>
+        <Framework>
+          <Switch>
+            <Route excat path={'/index'} component={Index} />
+            <Redirect exact from={'/'} to={'/index'} />
+            <Route render={() => <div className="FBV FBAC FBJC" style={{fontSize: 100}}>404</div>} />
+          </Switch>
+        </Framework>
+      </Router>
+      // </Auth>
     )
   }
 }

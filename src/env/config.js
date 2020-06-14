@@ -23,7 +23,7 @@ module.exports = {
   proxy: {
     '/api': {
       // mock
-      target: 'http://172.18.109.170:3000/mock/112',
+      target: 'http://puercs.cspiretech.com:3000/api/cockpit/scwb-1252',
       // pathRewrite: { '^/api': '' },
       changeOrigin: true,
     }
