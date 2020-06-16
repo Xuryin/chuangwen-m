@@ -19,14 +19,14 @@ export default class App extends Component {
   render() {
     return (
       // <Auth>
-      <Router>
-        <Framework>
-          <Switch>
-            <Route excat path={'/'} component={Index} />
-            <Route render={() => <div className="FBV FBAC FBJC" style={{fontSize: 100}}>404</div>} />
-          </Switch>
-        </Framework>
-      </Router>
+        <Router>
+          <Framework>
+            <Switch>
+              <Route excat path={'/'} component={Index} />
+              <Route render={() => <div className="FBV FBAC FBJC" style={{fontSize: 100}}>404</div>} />
+            </Switch>
+          </Framework>
+        </Router>
       // </Auth>
     )
   }

@@ -15,27 +15,32 @@ class Authorized extends PureComponent {
   componentDidMount() {
     const COCKPIT_ID = "scwb-1252-m"
 
-    window.Cockpit && Cockpit.getToken(COCKPIT_ID, ({token}) => {
-      // console.log(token)
-      getAuth({
-        token,
-        // 驾驶舱编号
-        cockpitCode: COCKPIT_ID
-      }).then((res) => {
-        console.log(res)
-        if(res && res.result) {
-          const {
-            token: cockpitToken
-          } = res.result
-          this.setState({
-            token: cockpitToken
-          })
+    let token = ''
+    if(/token=([0-9a-zA-Z]+)/.test(location.href)) {
+      token = RegExp.$1
+    }
 
-          // 设置统一的头部变量
-          fetch.defaults.headers.common['token'] = cockpitToken;
-        }
-      })
-    });
+    // window.Cockpit && Cockpit.getToken(COCKPIT_ID, ({token}) => {
+      // console.log(token)
+    getAuth({
+      token,
+      // 驾驶舱编号
+      cockpitCode: COCKPIT_ID
+    }).then((res) => {
+      console.log(res)
+      if(res && res.result) {
+        const {
+          token: cockpitToken
+        } = res.result
+        this.setState({
+          token: cockpitToken
+        })
+
+        // 设置统一的头部变量
+        fetch.defaults.headers.common['token'] = cockpitToken;
+      }
+    })
+    // });
 
   }
 
