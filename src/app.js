@@ -22,8 +22,7 @@ export default class App extends Component {
       <Router>
         <Framework>
           <Switch>
-            <Route excat path={'/index'} component={Index} />
-            <Redirect exact from={'/'} to={'/index'} />
+            <Route excat path={'/'} component={Index} />
             <Route render={() => <div className="FBV FBAC FBJC" style={{fontSize: 100}}>404</div>} />
           </Switch>
         </Framework>
