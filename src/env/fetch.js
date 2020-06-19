@@ -1,7 +1,7 @@
 import fetch from '@/utils/fetch'
 
 const fetchInstance = fetch.create({
-  baseURL: '/api/v2',
+  baseURL: '/api/cockpit/scwb-1252/api/v2',
   method: 'POST',
   // rest: true,
   headers: {
