@@ -4,7 +4,7 @@ import {getAuth} from '@/services/auth'
 
 class Authorized extends PureComponent {
   state = {
-    token: ''
+    token: 'a21f815169dbf2a65d71fd2b033cca18'
   }
 
   //初始化权限

@@ -1,5 +1,6 @@
 import React from 'react';
 import './index.styl';
+import { formatNumber, formatTime } from '@/utils/func';
 
 const ListItem = (props) => {
   const { className, data } = props;
@@ -10,13 +11,13 @@ const ListItem = (props) => {
       <div className="list-item-header">
         <div className="item-header-title">{ data && data.cw_type }</div>
         <div className="item-header-info">
-          <span className="item-header-info-num">{ data && data.total }</span>
+          <span className="item-header-info-num">{ formatNumber(data && data.total || 0) }</span>
           <span className="item-header-info-unit">{ data && data.m_unit }</span>
         </div>
       </div>
       <div className="list-item-content">
         <div className="item-content-label">更新时间</div>
-        <div className="item-content-span">{ data && data.etlTime }</div>
+        <div className="item-content-span">{ formatTime(data && data.etlTime) }</div>
       </div>
     </div>
   );
