@@ -18,7 +18,7 @@ import './app.styl'
 export default class App extends Component {
   render() {
     return (
-      // <Auth>
+      <Auth>
         <Router>
           <Framework>
             <Switch>
@@ -27,7 +27,7 @@ export default class App extends Component {
             </Switch>
           </Framework>
         </Router>
-      // </Auth>
+      </Auth>
     )
   }
 }
