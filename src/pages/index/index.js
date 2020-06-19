@@ -226,10 +226,10 @@ export default class Index extends Component {
               <Title text="中心城区创文示范活动数据（2018年起）" color="#EF4864"/>
               <ScrollBox>
                 {/* <div style={{ display: 'flex', alignItems: 'flex-start' }}> */}
-                  {/* <TextItem data={{ name: '活动次数(次）', num: '885' }}>
-                    <div className="footer-title">2018(次）</div>
-                    <div className="footer-num">9820</div>
-                  </TextItem> */}
+                {/* <TextItem data={{ name: '活动次数(次）', num: '885' }}>
+                  <div className="footer-title">2018(次）</div>
+                  <div className="footer-num">9820</div>
+                </TextItem> */}
                 {
                   (data && data.center_hd || []).map(item => <TextItem data={{ name: `${item.cw_type && item.cw_type.replace('普洱市中心城区', '').replace('（2018年起）', '')}(${item.m_unit})`, num: item.total }}/>)
                 }
