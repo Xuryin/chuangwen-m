@@ -21,7 +21,7 @@ class Authorized extends PureComponent {
     }
 
     // window.Cockpit && Cockpit.getToken(COCKPIT_ID, ({token}) => {
-      // console.log(token)
+    // console.log(token)
     getAuth({
       token,
       // 驾驶舱编号
