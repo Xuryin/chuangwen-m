@@ -7,6 +7,7 @@ import ScrollBox from './ScrollBox';
 import TextItem from './TextItem';
 import ListItem from './ListItem';
 import Tabs from './Tabs';
+import Empty from './Empty';
 
 export {
   Gauge,
@@ -17,5 +18,6 @@ export {
   ScrollBox,
   TextItem,
   ListItem,
-  Tabs
+  Tabs,
+  Empty
 };

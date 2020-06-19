@@ -9,14 +9,7 @@ class Gauge extends Component {
     super(props);
 
     this.id = 'gauge' + getUUID();
-  }
-
-  renderGauge = () => {
-
-    let options = {
-      // tooltip: {
-      //   formatter: '{a} <br/>{b} : {c}%'
-      // },
+    this.options = {
       toolbox: {
         feature: {
           restore: {},
@@ -36,7 +29,7 @@ class Gauge extends Component {
             //相对于仪表盘中心的偏移位置，数组第一项是水平方向的偏移，第二项是垂直方向的偏移
             offsetCenter: [0, '65%']
           },
-          data: [{value: 50, itemStyle: { color: 'rgba(0,0,0,.25)' }}],
+          data: [],
           startAngle: 210,
           endAngle: -30,
           splitNumber: 4,		// 仪表盘刻度的分割段数,默认 10
@@ -91,8 +84,23 @@ class Gauge extends Component {
       ]
       
     };
+  }
 
-    this.gaugeChart && this.gaugeChart.setOption(options);
+  init = (data) => {
+    if(data && data.length > 0) {
+      const { etlTime, m_unit, total } = data[0];
+
+      this.options.series[0].data = [{
+        value: total * 100, itemStyle: { color: 'rgba(0,0,0,.25)' }
+      }];
+
+      this.renderGauge();
+    }
+  }
+
+  renderGauge = () => {
+
+    this.gaugeChart && this.gaugeChart.setOption(this.options);
   }
 
   render() {
@@ -106,7 +114,14 @@ class Gauge extends Component {
   componentDidMount() {
     this.gaugeChart = echarts.init(document.getElementById(this.id));
 
-    this.renderGauge();
+    this.init(this.props.data);
+  }
+
+
+  componentWillReceiveProps(nextProps) {
+    const { data } = nextProps;
+    
+    this.init(data);
   }
 }
 

@@ -4,16 +4,18 @@ import echarts from '../../utils/echarts';
 
 import './index.styl';
 
+const TEXT_MAP = {
+  "全市新时代文明实践中心个数": "实践中心",
+  "全市新时代文明实践所个数": "实践所",
+  "全市新时代文明实践站个数": "实践站"
+};
+
 class Pie extends Component {
   constructor(props) {
     super(props);
 
     this.id = 'gauge' + getUUID();
-  }
-
-  renderPie = () => {
-
-    let options = {
+    this.options = {
       tooltip: {
         trigger: 'item',
         formatter: '{a} <br/>{b}: {c} ({d}%)'
@@ -35,16 +37,7 @@ class Pie extends Component {
           fontSize: px2spx(24),
           color: "#0f0f0f"
         },
-        data: [{
-          name: '实践站',
-          icon: "circle"
-        }, {
-          name: '实践所',
-          icon: "circle"
-        }, {
-          name: '实践中心',
-          icon: "circle"
-        }]
+        data: []
       },
       
       series: [
@@ -55,14 +48,14 @@ class Pie extends Component {
           avoidLabelOverlap: false,
           silent: true,   // 是否有鼠标交互
           label: {
-            normal: {
-              show: true,
-              formatter: "{d}个",
-              textStyle: {
-                fontSize: px2spx(24),
-                color: "#979797"
-              },
-            },
+            // normal: {
+            //   show: true,
+            //   formatter: "{d}个",
+            //   textStyle: {
+            //     fontSize: px2spx(24),
+            //     color: "#979797"
+            //   },
+            // },
           },
           labelLine: {  // 线的样式
             normal: {
@@ -73,11 +66,7 @@ class Pie extends Component {
               length: px2spx(20),
             }
           },
-          data: [
-            {value: 335, name: '实践站'},
-            {value: 310, name: '实践所'},
-            {value: 234, name: '实践中心'}
-          ],
+          data: [],
           emphasis: {
             itemStyle: {
               shadowBlur: 10,
@@ -97,8 +86,48 @@ class Pie extends Component {
         }
       ]
     };
+  }
 
-    this.pieChart && this.pieChart.setOption(options);
+  init = (data) => {
+    if(data && data.length > 0) {
+      let legendData = [], pieData = [], m_unit = data[0].m_unit;
+
+      data.forEach(item => {
+        legendData.push({
+          name: TEXT_MAP[item.cw_type] || '-',
+          icon: 'circle'
+        });
+
+        pieData.push({
+          name: TEXT_MAP[item.cw_type] || '-',
+          value: item.total
+        });
+      });
+
+      this.options.legend.data = legendData;
+      this.options.series[0].data = pieData;
+      this.options.series[0].label = {
+        normal: {
+          show: true,
+          formatter: (data) => {
+            // `{c}${m_unit}`
+            return data.value + m_unit
+          },
+          textStyle: {
+            fontSize: px2spx(24),
+            color: "#979797"
+          },
+        },
+      };
+
+      this.renderPie();
+    }
+  }
+
+
+  renderPie = () => {
+
+    this.pieChart && this.pieChart.setOption(this.options);
   }
 
   render() {
@@ -112,7 +141,13 @@ class Pie extends Component {
   componentDidMount() {
     this.pieChart = echarts.init(document.getElementById(this.id));
 
-    this.renderPie();
+    this.init(this.props.data);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { data } = nextProps;
+
+    this.init(data);
   }
 }
 

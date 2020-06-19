@@ -9,11 +9,7 @@ class Line extends Component {
     super(props);
 
     this.id = 'gauge' + getUUID();
-  }
-
-  renderLine = () => {
-
-    let options = {
+    this.options = {
       grid: {  
         left: '3%',   //图表距边框的距离
         right: '4%',
@@ -41,7 +37,7 @@ class Line extends Component {
         splitLine: {
           show: false
         },
-        data: ['2015', '2016', '2017', '2018', '2019', '2010']
+        data: []
       },
       yAxis: [{
         type: 'value',
@@ -70,7 +66,7 @@ class Line extends Component {
         }
       }],
       series: [{
-        data: [820, 932, 901, 934, 1290, 30],
+        data: [],
         type: 'line',
         symbol: 'diamond',//拐点样式
         symbolSize: 8,//拐点大小
@@ -87,7 +83,20 @@ class Line extends Component {
       }]
     };
 
-    this.lineChart && this.lineChart.setOption(options);
+  }
+
+  init = (data) => {
+    const { xData, yData, xUnit, yUnit } = data || {};
+
+    this.options.xAxis.data = xData;
+    this.options.series[0].data = yData;
+    this.options.xAxis.name = `单位/${xUnit || ''}`;
+    this.options.yAxis[0].name = `单位/${yUnit || ''}`;
+    this.renderLine();
+  }
+
+  renderLine = () => {
+    this.lineChart && this.lineChart.setOption(this.options);
   }
 
   render() {
@@ -101,7 +110,11 @@ class Line extends Component {
   componentDidMount() {
     this.lineChart = echarts.init(document.getElementById(this.id));
 
-    this.renderLine();
+    this.init(this.props.data);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.init(nextProps.data);
   }
 }
 
