@@ -207,7 +207,7 @@ export default class Index extends Component {
 
     return (
       <div className="index-container">
-        <Tabs onClick={this.initData()}>
+        <Tabs onClick={this.initData}>
           <Tabs.Item title="中心城区创文数据">
             <ContentBox>
               <Title text="中心城区创文点位数据"/>
