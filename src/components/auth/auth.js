@@ -32,12 +32,12 @@ class Authorized extends PureComponent {
         const {
           token: cockpitToken
         } = res.result
-        this.setState({
-          token: cockpitToken
-        })
 
         // 设置统一的头部变量
         fetch.defaults.headers.common['token'] = cockpitToken;
+        this.setState({
+          token: cockpitToken
+        })
       }
     })
     // });
