@@ -23,7 +23,7 @@ module.exports = {
   proxy: {
     '/api': {
       // mock
-      target: 'http://puercs.cspiretech.com:3000',
+      target: 'https://szjsc.puercitybrain.com.cn',
       // pathRewrite: { '^/api': '' },
       changeOrigin: true,
     }
