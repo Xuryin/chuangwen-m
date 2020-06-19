@@ -13,6 +13,8 @@ class Tabs extends Component {
       width = this.dom.scrollWidth
     this.dom.scrollLeft = `${(index / this.props.children.length) * width}`
     this.setState({ cur: ++index })
+
+    this.props.onClick && this.props.onClick();
   }
   render () {
     const { cur } = this.state
