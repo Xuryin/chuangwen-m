@@ -111,7 +111,7 @@ class Pie extends Component {
           show: true,
           formatter: (data) => {
             // `{c}${m_unit}`
-            return data.value + m_unit
+            return data.name + data.value + m_unit
           },
           textStyle: {
             fontSize: px2spx(24),
