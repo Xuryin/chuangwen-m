@@ -72,7 +72,10 @@ class Line extends Component {
         symbolSize: 8,//拐点大小
         smooth: true,
         itemStyle : {  
-          normal : {  
+          normal : { 
+            label: {
+              show: true        // 节点展示数据
+            }, 
             color:'#2D7ECD',    // 拐点颜色
             lineStyle:{
               width:2,          // 线宽度
