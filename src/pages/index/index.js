@@ -174,7 +174,7 @@ export default class Index extends Component {
     };
 
     (data || []).forEach(item => {
-      ts_data.xData.push(item.etlTime);
+      ts_data.xData.push(item.indicatorCycle);
       ts_data.yData.push(parseInt(item.total));
       ts_data.total += parseInt(item.total);
     });

@@ -88,7 +88,7 @@ class Gauge extends Component {
 
   init = (data) => {
     if(data && data.length > 0) {
-      const { etlTime, m_unit, total } = data[0];
+      const { indicatorCycle, m_unit, total } = data[0];
 
       this.options.series[0].data = [{
         value: total * 100, itemStyle: { color: 'rgba(0,0,0,.25)' }

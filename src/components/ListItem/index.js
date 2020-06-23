@@ -17,7 +17,7 @@ const ListItem = (props) => {
       </div>
       <div className="list-item-content">
         <div className="item-content-label">更新时间</div>
-        <div className="item-content-span">{ formatTime(data && data.etlTime) }</div>
+        <div className="item-content-span">{ formatTime(data && data.indicatorCycle) }</div>
       </div>
     </div>
   );
