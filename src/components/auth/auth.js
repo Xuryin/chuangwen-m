@@ -20,7 +20,7 @@ class Authorized extends PureComponent {
     if(/token=([0-9a-zA-Z]+)/.test(location.href)) {
       token = RegExp.$1
     }
-
+    // fetch.defaults.headers.common['token'] = '2e15ed71b41e91557ee2c20e3a0792ea';
     // window.Cockpit && Cockpit.getToken(COCKPIT_ID, ({token}) => {
     // console.log(token)
     getAuth({
