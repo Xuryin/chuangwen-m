@@ -19,11 +19,11 @@ function formatNumber(number) {
   let reg = /^\d+(.\d+)?$/g;
 
   if(typeof number === 'number') {
-    return number.toLocaleString();
+    return number;
   }
 
   if(reg.test(number)) {
-    return parseInt(number).toLocaleString();
+    return parseInt(number);
   }
 
   return 0;
