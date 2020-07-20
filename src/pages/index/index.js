@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Title, ContentBox, ScrollBox, TextItem, Gauge, ListItem, Line, Pie, Tabs, Empty } from '@/components';
 import { getData } from "@/services/cw";
 import { formatTime } from '@/utils/func';
+import VConsole from 'vconsole';
 
 import './index.styl'
 
@@ -347,6 +348,14 @@ export default class Index extends Component {
   }
 
   componentDidMount() {
+    let debug = false;
+    if(/debug=([a-z]+)/.test(location.href)) {
+      debug = RegExp.$1;
+    }
+    if(debug) {
+      new VConsole();
+    }
+    
     // 获取链接上的areaCodes
     let areaCode = '', areaCodes = [];
     if(/areaCode=([0-9a-zA-Z]+)/.test(location.href)) {
