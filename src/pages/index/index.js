@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Title, ContentBox, ScrollBox, TextItem, Gauge, ListItem, Line, Pie, Tabs, Empty } from '@/components';
-import { getData } from "@/services/cw";
+import { Title, ContentBox, ScrollBox, TextItem, Gauge, ListItem, Line, Pie, Tabs, Empty, Quota, Table, Table1 } from '@/components';
+import { getData, getApi } from "@/services/cw";
 import { formatTime } from '@/utils/func';
 import VConsole from 'vconsole';
+import { ad, adver, dogs, lg, others, reports, smoke, smoking, paste,transport, clear } from '@/assets/images';
+
 
 import './index.styl'
 
@@ -25,7 +27,7 @@ const DATA_MAP = {
   "普洱市中心城区参与创文小区数": "center_dw",
   "普洱市中心城区创文测评重点点位": "center_dw",
   "普洱市中心城区创文测评固定点位": "center_dw",
-  
+
   "普洱市中心城区创文主题示范活动次数（2018年起）": "center_hd",
   "普洱市中心城区创文主题示范活动参与人数（2018年起）": "center_hd",
   "普洱市中心城区开展第三方创文问卷、民主测评次数（2018年起）": 'center_hd',
@@ -61,6 +63,19 @@ const DATA_MAP = {
   "全市新时代文明实践站个数": "right_sj"
 };
 
+const incident = [
+  {title: '劝导不文明遛狗行为', number: 2345, icon: lg, id: 'qdbwmlgTotal', code: 610, quota: "起"},
+  {title: '捕获流浪狗', number: 2345, icon: dogs, id: 'phllgTotal', code: 601, quota: "只" },
+  {title: '劝导不文明交通行为', number: 2345, icon: transport , id: 'qdbwmjtxwTotal', code: 604, quota: "起"},
+  {title: '制止乱张贴小广告行为', number: 2345, icon: paste, id: 'zzlztxggTotal',code: 608, quota: "起"},
+  {title: '劝导公共场所吸烟', number: 2345, icon: smoking, id: 'qdggcsxyTotal', code: 609, quota: "人"},
+  {title: '制止劝导乱丢烟头', number: 2345, icon: smoke, id: 'zzldytTotal',code: 606, quota: "起"},
+  {title: '制止其他不文明行为', number: 2345, icon: others, id: 'zzqtbwmxwTotal', code: 607, quota: "起"},
+  {title: '口头宣传', number: 2345, icon: reports, id: 'ktxcTotal', code: 611, quota: "人"},
+  {title: '清理小广告', number: 2345, icon: clear, id: 'qlxggTotal', code: 602, quota: "张"},
+]
+
+
 export default class Index extends Component {
   state = {
     data: {
@@ -78,7 +93,14 @@ export default class Index extends Component {
     },
 
     time: ['20171231', '20181231', '20191231', '20200531'],
-    areaCodes: []
+    areaCodes: [],
+    centerData: {
+      center_ds: {},
+      center_gr: [],
+      center_dz: {},
+      total: "",
+      ds_list: []
+    }
   }
 
 
@@ -193,22 +215,162 @@ export default class Index extends Component {
     });
   }
 
+  //督查专报
+  getDBData = () => {
+    const {areaCodes, centerData} = this.state;
+    getApi({
+      indicatorCycles: ['2020', '2019', '2018', '2017'],
+      areaCodes: areaCodes, // 530800000000 530801000000
+    }, 605).then(res => {
+      centerData.center_dz = res.data
+      this.setState({
+        centerData: centerData
+      }, () => {
+        //这里打印的是最新的state值
+        console.log(this.state.centerData);
+      })
+    }).catch(err => {
+    });
+  }
+
+  // 工作人员
+  getGRData = () => {
+    const {areaCodes, centerData} = this.state;
+    getApi({
+      indicatorCycles: ['2020', '2019', '2018', '2017'],
+      areaCodes: areaCodes, // 530800000000 530801000000
+    }, 613).then(res => {
+      console.log(res.data)
+      centerData.center_gr = res.data
+
+      this.setState({
+        centerData: centerData
+      }, () => {
+        //这里打印的是最新的state值
+        console.log(this.state.centerData);
+      })
+    }).catch(err => {
+    });
+  }
+
+  //工作人员总数
+  getGRTLIst = () => {
+    const {areaCodes, centerData} = this.state;
+    getApi({
+      indicatorCycles: ['2020', '2019', '2018', '2017'],
+      areaCodes: areaCodes, // 530800000000 530801000000
+    }, 603).then(res => {
+      console.log(res.data)
+      centerData.total = res.data.total
+
+      this.setState({
+        centerData: centerData
+      }, () => {
+        //这里打印的是最新的state值
+        console.log(this.state.centerData);
+      })
+    }).catch(err => {
+    });
+
+  }
+
+  // 督查事件List
+  getDSList = ()  => {
+    const {areaCodes, centerData} = this.state;
+    const ds_list = {
+      'qdbwmlgTotal': 0,
+      'phllgTotal': 0,
+      'qdbwmjtxwTotal': 0,
+      'zzlztxggTotal': 0,
+      'qdggcsxyTotal': 0,
+      'zzldytTotal': 0,
+      'zzqtbwmxwTotal': 0,
+      'ktxcTotal': 0,
+      'qlxggTotal': 0
+    }
+    getApi({
+      indicatorCycles: ['2020', '2019', '2018', '2017'],
+      areaCodes: areaCodes, // 530800000000 530801000000
+    }, 612).then(res => {
+      console.log(res.data)
+      centerData.ds_list = ds_list
+      this.setState({
+        centerData: centerData
+      }, () => {
+        centerData.ds_list = res.data
+        this.setState({
+          centerData: centerData
+        }, () => {
+          //这里打印的是最新的state值
+          console.log(this.state.centerData);
+        })
+      })
+    }).catch(err => {
+    });
+  }
+
+  getNewData () {
+    this.getGRTLIst()
+    this.getGRData()
+    this.getDBData()
+    this.getDSList()
+  }
+
   // 定时更新数据
   intervalData = (time) => {
     this.timer && clearInterval(this.timer);
 
     this.timer = setInterval(() => {
       this.initData();
+      this.getNewData();
       
     }, time || 30000);
   }
 
   render() {
-    const { data } = this.state;
+    const { data, centerData } = this.state;
 
     return (
       <div className="index-container">
         <Tabs onClick={this.initData}>
+
+
+          <Tabs.Item title="创文督办事件">
+            {incident.length > 0 ? (
+              <div className='supervision-content'>
+                {incident.map((item, index) => (
+                  <Quota data={{
+                    title: item.title,
+                    imgUrl: item.icon,
+                    number: centerData.ds_list[item.id],
+                    code: item.code,
+                    quota: item.quota
+                  }} />
+                ))}
+              </div>
+            ) : <Empty />
+            }
+          </Tabs.Item>
+
+          <Tabs.Item title="创文工作人员">
+            <div className='staff-content'>
+              {centerData.center_gr.length > 0 ? (
+                <Table total={centerData.total} data={centerData.center_gr}/>
+              ) : <Empty />
+              }
+            </div>
+          </Tabs.Item>
+
+          <Tabs.Item title="创文督查专报">
+            <div className='staff-content'>
+              {centerData.center_dz.length > 0 ? (
+                <Table1 data={centerData.center_dz}/>
+              ) : <Empty />
+              }
+            </div>
+          </Tabs.Item>
+
+
           <Tabs.Item title="中心城区创文数据">
             <ContentBox>
               <Title text="中心城区创文点位数据"/>
@@ -341,6 +503,7 @@ export default class Index extends Component {
               }
             </div>
           </Tabs.Item>
+
         </Tabs>
         
       </div>
@@ -377,6 +540,7 @@ export default class Index extends Component {
       areaCodes
     }, () => {
       this.initData();
+      this.getNewData();
     });
 
     this.intervalData(30000);

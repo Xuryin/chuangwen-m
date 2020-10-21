@@ -16,3 +16,13 @@ export function getData(params) {
     }
   })
 }
+
+export function getApi (params, apiCode) {
+  return request({
+    url: `/indicator/10000002${apiCode}`,
+    method: 'POST',
+    data: {
+      ...params,
+    }
+  })
+}

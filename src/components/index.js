@@ -8,6 +8,10 @@ import TextItem from './TextItem';
 import ListItem from './ListItem';
 import Tabs from './Tabs';
 import Empty from './Empty';
+import Quota from './Quota';
+import Table from './Table';
+import Table1 from './Table1';
+
 
 export {
   Gauge,
@@ -19,5 +23,8 @@ export {
   TextItem,
   ListItem,
   Tabs,
-  Empty
+  Empty,
+  Quota,
+  Table,
+  Table1
 };

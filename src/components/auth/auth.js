@@ -5,7 +5,7 @@ import {getAuth} from '@/services/auth'
 class Authorized extends PureComponent {
   state = {
     // a21f815169dbf2a65d71fd2b033cca18
-    token: ''
+    token: '898a6950595753b3525e410e71d7f406'
   }
 
   //初始化权限
@@ -20,7 +20,7 @@ class Authorized extends PureComponent {
     if(/token=([0-9a-zA-Z]+)/.test(location.href)) {
       token = RegExp.$1
     }
-    // fetch.defaults.headers.common['token'] = '2e15ed71b41e91557ee2c20e3a0792ea';
+    fetch.defaults.headers.common['token'] = '898a6950595753b3525e410e71d7f406';
     // window.Cockpit && Cockpit.getToken(COCKPIT_ID, ({token}) => {
     // console.log(token)
     getAuth({

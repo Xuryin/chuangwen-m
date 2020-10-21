@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="6px" viewBox="0 0 10 6" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>向下箭头</title>
+    <desc>Created with Sketch.</desc>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页" transform="translate(-354.000000, -472.000000)">
+            <g id="编组-4备份" transform="translate(12.000000, 276.000000)">
+                <g id="编组-3备份" transform="translate(8.000000, 179.000000)">
+                    <g id="向下箭头" transform="translate(334.000000, 15.000000)">
+                        <rect id="矩形" x="0" y="0" width="10" height="10"></rect>
+                        <path d="M4.93882944,7.45975874 C4.7768328,7.48675203 4.62384315,7.36075567 4.49783757,7.25276406 L0.600828375,3.33777777 C0.402831464,3.13977164 0.199948186,2.99842367 0.600828375,2.61777224 C0.756628562,2.46263017 2.20712933,3.11550604 4.95233069,4.57639983 C7.69703572,3.19532206 9.1475365,2.54244313 9.30383301,2.61776302 C9.64693686,2.88669308 9.5018207,3.13977164 9.30383301,3.33776855 L5.39782605,7.25275484 C5.27182969,7.37876042 5.10082607,7.49576823 4.93882944,7.45975874 Z" id="路径" fill="#A3C8F2"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
