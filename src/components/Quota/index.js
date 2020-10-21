@@ -5,10 +5,12 @@ class Quota extends Component {
   constructor(props) {
     super(props)
     this.state = {
+
     }
   }
 
   render () {
+
     const { title, imgUrl, number, code, quota } = this.props.data;
 
     return (
