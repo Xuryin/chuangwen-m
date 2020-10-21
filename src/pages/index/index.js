@@ -334,6 +334,15 @@ export default class Index extends Component {
       <div className="index-container">
         <Tabs onClick={this.initData}>
 
+          <Tabs.Item title="创文督查专报">
+            <div className='staff-content'>
+              {centerData.center_dz.length > 0 ? (
+                <Table1 data={centerData.center_dz}/>
+              ) : <Empty />
+              }
+            </div>
+          </Tabs.Item>
+
 
           <Tabs.Item title="创文督办事件">
             {incident.length > 0 ? (
@@ -361,14 +370,6 @@ export default class Index extends Component {
             </div>
           </Tabs.Item>
 
-          <Tabs.Item title="创文督查专报">
-            <div className='staff-content'>
-              {centerData.center_dz.length > 0 ? (
-                <Table1 data={centerData.center_dz}/>
-              ) : <Empty />
-              }
-            </div>
-          </Tabs.Item>
 
 
           <Tabs.Item title="中心城区创文数据">
